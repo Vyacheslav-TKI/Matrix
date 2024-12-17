@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace matrix {
+namespace matrixx {
     template <typename T>
     class MyExercise : public Exercise<T> {
     public:
@@ -16,7 +16,7 @@ namespace matrix {
         }
 
         /**
-         * @brief Задача 1: Заменяет отрицательный элемент каждого столбца на ноль.
+         * @brief Р—Р°РґР°С‡Р° 1: Р—Р°РјРµРЅСЏРµС‚ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РєР°Р¶РґРѕРіРѕ СЃС‚РѕР»Р±С†Р° РЅР° РЅРѕР»СЊ.
          */
         void Task1() override {
             size_t rows = this->matrix.getRows();
@@ -32,7 +32,7 @@ namespace matrix {
         }
 
         /**
-         * @brief Задача 2: Удаляет из массива столбцы, содержащие элемент, кратный 5.
+         * @brief Р—Р°РґР°С‡Р° 2: РЈРґР°Р»СЏРµС‚ РёР· РјР°СЃСЃРёРІР° СЃС‚РѕР»Р±С†С‹, СЃРѕРґРµСЂР¶Р°С‰РёРµ СЌР»РµРјРµРЅС‚, РєСЂР°С‚РЅС‹Р№ 5.
          */
         void Task2() override {
             size_t rows = this->matrix.getRows();
@@ -50,11 +50,11 @@ namespace matrix {
                 }
 
                 if (hasMultipleOf5) {
-                    this->matrix.removeCol(col); // Удаление столбца
-                    --cols; // Обновляем количество столбцов
+                    this->matrix.removeCol(col); 
+                    --cols; 
                 }
                 else {
-                    ++col; // Переходим к следующему столбцу
+                    ++col; 
                 }
             }
         }

@@ -2,12 +2,12 @@
 #include "Generator.h"
 #include <iostream>
 
-namespace matrix
+namespace matrixx
 {
     template <typename T>
     /**
-     * @brief Класс IStreamGenerator реализует генератор значений из входного потока.
-     * @tparam T Тип данных, которые будет генерировать класс IStreamGenerator.
+     * @brief РљР»Р°СЃСЃ IStreamGenerator СЂРµР°Р»РёР·СѓРµС‚ РіРµРЅРµСЂР°С‚РѕСЂ Р·РЅР°С‡РµРЅРёР№ РёР· РІС…РѕРґРЅРѕРіРѕ РїРѕС‚РѕРєР°.
+     * @tparam T РўРёРї РґР°РЅРЅС‹С…, РєРѕС‚РѕСЂС‹Рµ Р±СѓРґРµС‚ РіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РєР»Р°СЃСЃ IStreamGenerator.
      */
     class IStreamGenerator : public Generator<T> {
     private:
@@ -15,14 +15,14 @@ namespace matrix
 
     public:
         /**
-         * @brief Конструктор класса IStreamGenerator.
-         * @param in Ссылка на входной поток (по умолчанию std::cin).
+         * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР° IStreamGenerator.
+         * @param in РЎСЃС‹Р»РєР° РЅР° РІС…РѕРґРЅРѕР№ РїРѕС‚РѕРє (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ std::cin).
          */
         IStreamGenerator(std::istream& in = std::cin) : inputStream(in) {}
 
         /**
-         * @brief Генерирует значение типа T, считывая его из входного потока.
-         * @return T Считанное значение типа T из входного потока.
+         * @brief Р“РµРЅРµСЂРёСЂСѓРµС‚ Р·РЅР°С‡РµРЅРёРµ С‚РёРїР° T, СЃС‡РёС‚С‹РІР°СЏ РµРіРѕ РёР· РІС…РѕРґРЅРѕРіРѕ РїРѕС‚РѕРєР°.
+         * @return T РЎС‡РёС‚Р°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ С‚РёРїР° T РёР· РІС…РѕРґРЅРѕРіРѕ РїРѕС‚РѕРєР°.
          */
         T generate() override {
             T value;

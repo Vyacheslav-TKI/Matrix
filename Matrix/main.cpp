@@ -6,8 +6,8 @@
 int main() {
     setlocale(LC_ALL, "RU");
 
-    matrix::RandomGenerator<int> intGen(-100, 100);
-    matrix::MyExercise<int> intExercise(3, 3, intGen);
+    matrixx::RandomGenerator<int> intGen(-100, 100);
+    matrixx::MyExercise<int> intExercise(3, 3, intGen);
 
     std::cout << "Matrix with random values (int):\n";
     intExercise.fillMatrix();
@@ -22,8 +22,8 @@ int main() {
     intExercise.printMatrix();
 
     std::cout << "\nEnter the values for the 2x2 (double) matrix:\n";
-    matrix::IStreamGenerator<double> userInputGen;
-    matrix::MyExercise<double> doubleExercise(2, 2, userInputGen);
+    matrixx::IStreamGenerator<double> userInputGen;
+    matrixx::MyExercise<double> doubleExercise(2, 2, userInputGen);
 
     doubleExercise.fillMatrix();
     std::cout << "The matrix entered by the user:\n";

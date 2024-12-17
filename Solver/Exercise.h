@@ -1,6 +1,6 @@
 #pragma once
 
-namespace matrix
+namespace matrixx
 {
     template <typename T>
     /**

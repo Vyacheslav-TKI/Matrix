@@ -8,7 +8,7 @@
 #include <cstddef>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using namespace matrix;
+using namespace matrixx;
 
 namespace MatrixTests
 {

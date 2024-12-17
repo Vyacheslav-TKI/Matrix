@@ -3,12 +3,12 @@
 #include <random>
 #include <type_traits>
 
-namespace matrix
+namespace matrixx
 {
     template <typename T>
     /**
-     * @brief Класс RandomGenerator реализует генератор случайных чисел,
-     * @tparam T Тип данных, который будет генерироваться (целые или вещественные числа).
+     * @brief РљР»Р°СЃСЃ RandomGenerator СЂРµР°Р»РёР·СѓРµС‚ РіРµРЅРµСЂР°С‚РѕСЂ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»,
+     * @tparam T РўРёРї РґР°РЅРЅС‹С…, РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РіРµРЅРµСЂРёСЂРѕРІР°С‚СЊСЃСЏ (С†РµР»С‹Рµ РёР»Рё РІРµС‰РµСЃС‚РІРµРЅРЅС‹Рµ С‡РёСЃР»Р°).
      */
     class RandomGenerator : public Generator<T> {
     private:
@@ -19,14 +19,14 @@ namespace matrix
 
     public:
         /**
-         * @brief Конструктор класса RandomGenerator.
+         * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР° RandomGenerator.
          */
         RandomGenerator(T min, T max)
             : generator(std::random_device{}()), distribution(min, max) {
         }
 
         /**
-         * @brief Генерирует случайное число в заданном диапазоне.
+         * @brief Р“РµРЅРµСЂРёСЂСѓРµС‚ СЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ РІ Р·Р°РґР°РЅРЅРѕРј РґРёР°РїР°Р·РѕРЅРµ.
          */
         T generate() override { return distribution(generator); }
     };
