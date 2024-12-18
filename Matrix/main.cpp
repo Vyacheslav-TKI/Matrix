@@ -1,41 +1,26 @@
-#include <locale>
-#include "..\Solver\RandomGenerator.h"
-#include "..\Solver\IStreamGenerator.h"
-#include "..\Solver\MyExercise.h"
+#include <iostream>
+#include "../Solver/Matrix.h"
+#include "../Solver/ConstantGenerator.h"
+#include "../Solver/RandomGenerator.h"
+#include "../Solver/Exercise.h"
 
-int main() {
-    setlocale(LC_ALL, "RU");
+int main()
+{
+    using namespace miit::data::generators;
+    using namespace miit::matrix::exercises;
 
-    matrixx::RandomGenerator<int> intGen(-100, 100);
-    matrixx::MyExercise<int> intExercise(3, 3, intGen);
+    
+    const size_t rows = 5;
+    const size_t columns = 5;
 
-    std::cout << "Matrix with random values (int):\n";
-    intExercise.fillMatrix();
-    intExercise.printMatrix();
+    
+    auto randomGen = std::make_unique<RandomGenerator<int>>(-10, 10);
 
-    std::cout << "\nAfter Task1:\n";
-    intExercise.Task1();
-    intExercise.printMatrix();
+    
+    ConcreteExercise<int> exercise(rows, columns, std::move(randomGen));
 
-    std::cout << "\nAfter Task2:\n";
-    intExercise.Task2();
-    intExercise.printMatrix();
-
-    std::cout << "\nEnter the values for the 2x2 (double) matrix:\n";
-    matrixx::IStreamGenerator<double> userInputGen;
-    matrixx::MyExercise<double> doubleExercise(2, 2, userInputGen);
-
-    doubleExercise.fillMatrix();
-    std::cout << "The matrix entered by the user:\n";
-    doubleExercise.printMatrix();
-
-    std::cout << "\nAfter Task1:\n";
-    doubleExercise.Task1();
-    doubleExercise.printMatrix();
-
-    std::cout << "\nAfter Task2:\n";
-    doubleExercise.Task2();
-    doubleExercise.printMatrix();
+   
+    exercise.run();
 
     return 0;
 }

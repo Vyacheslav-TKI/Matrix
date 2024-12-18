@@ -1,23 +1,13 @@
 #pragma once
 
-namespace matrixx
+namespace miit::data::generators
 {
     template <typename T>
-    /**
-     * @brief абстрактный класс Generator представляет генератор значений.
-     * @tparam T тип данных, которые будет генерировать класс-наследник.
-     */
-    class Generator {
+    class Generator
+    {
     public:
-        /**
-        * @brief виртуальный деструктор
-         */
         virtual ~Generator() = default;
 
-        /**
-         * @brief чисто виртуальна¤ функция для генерации значения типа T
-         * @return T —генерированное значение типа T.
-         */
         virtual T generate() = 0;
     };
 }

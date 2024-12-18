@@ -1,75 +1,138 @@
 #pragma once
-#include <vector>
-#include <iostream>
-#include <iomanip>
 
-namespace matrixx
+#include <memory>
+#include <string>
+#include <vector>
+#include "Vector.h"
+#include "Generator.h"
+
+namespace miit::data::structures
 {
     template <typename T>
-    /**
-     * @brief Класс Matrix представляет собой двумерный массив произвольного типа.
-     * @tparam T Тип данных, который будет храниться в матрице.
-     */
-    class Matrix {
-    private:
-        std::vector<std::vector<T>> data;
+    class Matrix;
 
+    template <typename T>
+    std::wstring ToString(const Matrix<T>& matrix);
+
+    template <typename T>
+    std::wstring ToString(const Matrix<T>* matrix);
+
+    template <typename T>
+    std::wstring ToString(Matrix<T>* matrix);
+
+    template <typename T>
+    class Matrix
+    {
     public:
-        /**
-         * @brief Конструктор класса Matrix.
-         * @param rows Количество строк в матрице.
-         * @param cols Количество столбцов в матрице.
-         * @param initVal Значение для инициализации всех элементов матрицы (по умолчанию - типа T).
-         */
-        Matrix(size_t rows, size_t cols, T initVal = T()) : data(rows, std::vector<T>(cols, initVal)) {}
-
-        /**
-         * @brief Оператор доступа к элементам матрицы.
-         * @param row Индекс строки, к которой нужно получить доступ.
-         * @return std::vector<T>& Ссылка на строку матрицы.
-         */
-        std::vector<T>& operator[](size_t row) { return data[row]; }
-
-        /**
-         * @brief Оператор доступа к элементам матрицы.
-         * @param row Индекс строки, к которой нужно получить доступ.
-         * @return const std::vector<T>& Константная ссылка на строку матрицы.
-         */
-        const std::vector<T>& operator[](size_t row) const { return data[row]; }
-
-        /**
-         * @brief Получает количество строк в матрице.
-         * @return size_t Количество строк в матрице.
-         */
-        size_t getRows() const { return data.size(); }
-
-        /**
-         * @brief Получает количество столбцов в матрице.
-         * @return size_t Количество столбцов в матрице.
-         */
-        size_t getCols() const { return data[0].size(); }
-
-        /**
-         * @brief Вставляет строку в матрицу на указанную позицию.
-         * @param pos Позиция, на которую нужно вставить строку.
-         * @param row Вектор, представляющий строку для вставки.
-         */
-        void insertRow(size_t pos, const std::vector<T>& row) {
-            if (pos <= data.size()) {
-                data.insert(data.begin() + pos, row);
+        Matrix(
+            const size_t rows,
+            const size_t columns,
+            const std::unique_ptr<miit::data::generators::Generator<T>>& generator)
+            : m_rows(rows), m_columns(columns)
+        {
+            data.resize(m_rows);
+            for (size_t i = 0; i < m_rows; ++i)
+            {
+                data[i] = Vector<T>(m_columns, generator);
             }
         }
 
-        /**
-         * @brief Выводит содержимое матрицы на экран.
-         */
-        void print() const {
-            for (const auto& row : data) {
-                for (const auto& elem : row) {
-                    std::cout << std::setw(5) << elem << " ";
-                }
-                std::cout << "\n";
+        Matrix(const std::initializer_list<std::initializer_list<T>> matrix)
+            : m_rows(matrix.size()), m_columns(matrix.begin()->size())
+        {
+            data.reserve(m_rows);
+            for (const auto& row : matrix)
+            {
+                data.emplace_back(row);
             }
         }
+
+        Matrix(const Matrix& other) = default;
+        Matrix(Matrix&& other) noexcept = default;
+
+        Matrix& operator=(const Matrix&) = default;
+        Matrix& operator=(Matrix&&) noexcept = default;
+
+        const Vector<T>& operator[](const size_t index) const
+        {
+            return data[index];
+        }
+
+        Vector<T>& operator[](const size_t index)
+        {
+            return data[index];
+        }
+
+        size_t rows() const noexcept
+        {
+            return m_rows;
+        }
+
+        size_t columns() const noexcept
+        {
+            return m_columns;
+        }
+
+        Vector<T> row(const size_t index) const
+        {
+            return data[index];
+        }
+
+        Vector<T> column(const size_t index) const
+        {
+            Vector<T> col(m_rows);
+            for (size_t i = 0; i < m_rows; ++i)
+            {
+                col[i] = data[i][index];
+            }
+            return col;
+        }
+
+        friend std::ostream& operator<<(std::ostream& out, const Matrix& matrix)
+        {
+            for (const auto& row : matrix.data)
+            {
+                out << row << "\n";
+            }
+            return out;
+        }
+
+        friend std::wostream& operator<<(std::wostream& out, const Matrix& matrix)
+        {
+            for (const auto& row : matrix.data)
+            {
+                out << row << L"\n";
+            }
+            return out;
+        }
+
+    private:
+        std::vector<Vector<T>> data;
+        size_t m_rows;
+        size_t m_columns;
     };
+
+    template <typename T>
+    std::wstring ToString(const Matrix<T>& matrix)
+    {
+        std::wstringstream ss;
+        ss << matrix;
+        return ss.str();
+    }
+
+    template <typename T>
+    std::wstring ToString(const Matrix<T>* matrix)
+    {
+        if (matrix)
+        {
+            return ToString(*matrix);
+        }
+        return L"null";
+    }
+
+    template <typename T>
+    std::wstring ToString(Matrix<T>* matrix)
+    {
+        return ToString(static_cast<const Matrix<T>*>(matrix));
+    }
 }
