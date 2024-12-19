@@ -13,10 +13,19 @@ namespace miit::data::generators
         std::mt19937 generator;
 
     public:
+        /**
+         * @brief Конструктор
+         * @param min Минимальное значение диапазона
+         * @param max Максимальное значение диапазона
+         */
         RandomGenerator(const T min, const T max)
             : distribution(min, max), generator(std::random_device{}()) {
         }
 
+        /**
+         * @brief Генерация случайного числа
+         * @return Случайное число типа T
+         */
         T generate() override
         {
             return distribution(generator);

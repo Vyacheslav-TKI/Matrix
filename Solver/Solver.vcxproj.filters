@@ -21,9 +21,6 @@
     <ClInclude Include="Exercise.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="MyExercise.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="RandomGenerator.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -48,9 +45,6 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Exercise.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="MyExercise.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="RandomGenerator.cpp">

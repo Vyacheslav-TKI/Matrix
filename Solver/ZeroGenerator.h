@@ -8,6 +8,9 @@ namespace miit::data::generators
     class ZeroGenerator : public ConstantGenerator<T>
     {
     public:
+        /**
+         * @brief Конструктор по умолчанию
+         */
         ZeroGenerator() : ConstantGenerator<T>(T(0)) {}
     };
 }

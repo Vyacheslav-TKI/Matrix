@@ -15,26 +15,49 @@ namespace miit::matrix::exercises
         miit::data::structures::Matrix<T>* matrix;
         std::ostream& out;
 
+        /**
+         * @brief Получает заголовок упражнения
+         * @return Строка с названием упражнения
+         */
         virtual std::string title() const noexcept = 0;
 
+        /**
+        * @brief Виртуальное первое задание
+        */
         virtual void task_1() = 0;
 
+        /**
+        * @brief Виртуальное второе задание
+        */
         virtual void task_2() = 0;
 
     public:
+        /**
+        * @brief Конструктор
+        * @param rows Количество строк в матрице
+        * @param columns Количество столбцов в матрице
+        * @param generator Указатель на генератор для инициализации элементов матрицы
+        * @param out Поток вывода (по умолчанию std::cout)
+        */
         explicit Exercise(
-            const size_t rows,
-            const size_t columns,
+            const int rows,
+            const int columns,
             std::unique_ptr<miit::data::generators::Generator<T>> generator,
             std::ostream& out = std::cout)
             : matrix(new miit::data::structures::Matrix<T>(rows, columns, generator)), out(out) {
         }
 
+        /**
+        * @brief Деструктор
+        */
         virtual ~Exercise()
         {
             delete matrix;
         }
 
+        /**
+        * @brief Запускает выполнение всех заданий
+        */
         void run()
         {
             out << "Running exercise: " << title() << "\n";
@@ -54,11 +77,18 @@ namespace miit::matrix::exercises
     class ConcreteExercise : public Exercise<T>
     {
     protected:
+        /**
+         * @brief Получить заголовок упражнения
+         * @return Строка
+         */
         std::string title() const noexcept override
         {
             return "Concrete Matrix Exercise";
         }
 
+        /**
+         * @brief Все отрицательные элементы матрицы заменяются на 0
+         */
         void task_1() override
         {
           
@@ -74,10 +104,13 @@ namespace miit::matrix::exercises
             }
         }
 
+        /**
+        * @brief Удаляет столбцы, содержащие элементы, кратные 5
+        */
         void task_2() override
         {
             
-            std::vector<size_t> columnsToRemove;
+            Vector<T> columnsToRemove;
 
             for (size_t col = 0; col < this->matrix->columns(); ++col)
             {

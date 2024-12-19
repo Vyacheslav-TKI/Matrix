@@ -6,8 +6,15 @@ namespace miit::data::generators
     class Generator
     {
     public:
+        /**
+         * @brief ¬иртуальный деструктор
+         */
         virtual ~Generator() = default;
 
+        /**
+         * @brief ¬иртуальный метод генерировани¤
+         * @return —генерированное значение типа T
+         */
         virtual T generate() = 0;
     };
 }
