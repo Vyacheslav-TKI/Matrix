@@ -36,7 +36,7 @@ namespace miit::data::structures
             const std::unique_ptr<miit::data::generators::Generator<T>>& generator)
             : m_rows(rows), m_columns(columns)
         {
-            if (rows * columns < 0)
+            if (rows < 0 || columns < 0)
             {
                 throw std::out_of_range("Rows and columns must not be less then 0!");
             }
