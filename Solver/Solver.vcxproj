@@ -18,6 +18,26 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConstantGenerator.h" />
+    <ClInclude Include="Exercise.h" />
+    <ClInclude Include="Generator.h" />
+    <ClInclude Include="IStreamGenerator.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="RandomGenerator.h" />
+    <ClInclude Include="Vector.h" />
+    <ClInclude Include="ZeroGenerator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConstantGenerator.cpp" />
+    <ClCompile Include="Exercise.cpp" />
+    <ClCompile Include="Generator.cpp" />
+    <ClCompile Include="IStreamGenerator.cpp" />
+    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="RandomGenerator.cpp" />
+    <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="ZeroGenerator.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
